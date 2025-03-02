@@ -11,6 +11,8 @@ package jar.gymhub;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        //Aquí va una nueva línea
+        System.out.print("Todos son geis");
+        
     }
 }
