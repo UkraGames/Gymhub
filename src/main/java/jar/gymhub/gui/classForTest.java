@@ -4,8 +4,6 @@
  */
 package jar.gymhub.gui;
 
-import jar.gymhub.dao.*;
-
 /**
  *
  * @author diego

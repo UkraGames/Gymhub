@@ -1,4 +1,4 @@
-package jar.gymhub.dao;
+package jar.gymhub.faces;
 /**
  *
  * @author diego
