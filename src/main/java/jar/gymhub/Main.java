@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package jar.gymhub;
+import jar.gymhub.db.gymConnect;
 
-/**
- *
- * @author diego
- */
 public class Main {
 
     public static void main(String[] args) {
         //Aquí va una nueva línea
-        System.out.print("Todos son geis");
+       gymConnect con = new gymConnect("/home/Descargas/dataBase.db");
+       
+       con.getConnection();
         
     }
 }
