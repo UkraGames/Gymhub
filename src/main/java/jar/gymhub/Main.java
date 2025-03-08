@@ -8,6 +8,6 @@ public class Main {
        gymConnect con = new gymConnect("/home/Descargas/dataBase.db");
        
        con.getConnection();
-        
+       //holamundo
     }
 }
