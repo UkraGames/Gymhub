@@ -4,26 +4,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 public class gymConnect {
     protected Connection conn;
-    private String dataBaseURL = "jdbc:sqlite:";
+    protected String dataBaseURL; 
     
-    public gymConnect(String URL){
-        dataBaseURL.concat(URL);
-    }
-    
+    /**
+     *
+     */
     public void getConnection(){
         if (dataBaseURL != null){
             try {
                 conn = DriverManager.getConnection(dataBaseURL);
-                System.out.println("Conexión exitosa");
+                System.out.println("Connected");
             } catch (SQLException e){
-                System.out.println("Error al conectar" + e.getMessage());
+                System.out.println("Error at connect" + e.getMessage());
             }
         }
     }
     
+    public void setURL(String URL){
+        this.dataBaseURL = "jdbc:sqlite:" + URL;
+    }
+    
+    
     public void closeConnection(){
         try{
-            if (conn == null){
+            if (conn == null || conn.isClosed()){
                 return;
             }
             if (conn.isClosed()){
@@ -31,7 +35,7 @@ public class gymConnect {
                 conn.close();
             }
         } catch (SQLException e){
-            System.out.println("Error al conectar" + e.getMessage());
+            System.out.println("Error at connect" + e.getMessage());
         }
     }
 }
