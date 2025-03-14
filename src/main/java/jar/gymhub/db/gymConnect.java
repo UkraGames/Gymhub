@@ -2,7 +2,12 @@ package jar.gymhub.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class gymConnect {
+
+/**
+ *
+ * @author diego
+ */
+public abstract class gymConnect {
     protected Connection conn;
     protected String dataBaseURL; 
     
@@ -17,6 +22,8 @@ public class gymConnect {
             } catch (SQLException e){
                 System.out.println("Error at connect" + e.getMessage());
             }
+        } else {
+            System.out.println("There's no path");
         }
     }
     
