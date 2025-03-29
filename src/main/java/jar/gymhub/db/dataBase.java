@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/*
+    ESTA CLASE ESTÁ DESTINADA A ÚNICAMENTE SER USADA UNA VEZ AL INICIAR EL PROGRAMA, POR FAVOR TRATAR DE NO TOCAR O USARLA MÁS
+*/
 public class dataBase extends gymConnect {
     String path;
     public dataBase() { //Inicializa todo, crea el path apartir de la detección del sistema
@@ -24,13 +26,13 @@ public class dataBase extends gymConnect {
         systemName = systemName.toLowerCase();
         if (systemName.contains("windows")) {
             System.out.println("Windows");
-            newPathOfSystem = "C:\\Windows\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
+            newPathOfSystem = System.getProperty("user.home") + "\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
         } else if (systemName.contains("linux")) {
             System.out.println("Linux");
             newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBaase.db"; //Actualmente funcionando
         } else if (systemName.contains("mac")) {
             System.out.println("Mac");
-            newPathOfSystem = "/Users/Shared/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
         } else {
             System.out.println("Otro");
             newPathOfSystem = "tmp/GymHubApp/dataBae.db"; //¿Qué sería? ¿BSD? ¿Quién usa eso honestamente? XD
