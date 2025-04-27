@@ -4,7 +4,7 @@ import java.util.Date;
  *
  * @author diego - Only me can modify this, pls don't touch anything
  */
-public class client { //Client class
+public class Client { //Client class
     private String nameClient;
     private int documentClient;
     private String startDate;
@@ -18,9 +18,9 @@ public class client { //Client class
     private int payment;
         
     //Constructors
-    public client (){} //void constructor
+    public Client (){} //void constructor
 
-    public client(String nameClient, int documentClient, String startDate, String finalDate, int subState, int subType, String number, String eMail, float height,float weight, int payment) {
+    public Client(String nameClient, int documentClient, String startDate, String finalDate, int subState, int subType, String number, String eMail, float height,float weight, int payment) {
         this.nameClient = nameClient;
         this.documentClient = documentClient;
         this.startDate = startDate;

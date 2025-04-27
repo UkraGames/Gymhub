@@ -3,18 +3,18 @@ package jar.gymhub.dao;
  *
  * @author diego
  */
-import jar.gymhub.classes.client;
-import jar.gymhub.db.gymConnect;
-import jar.gymhub.faces.daoClient;
+import jar.gymhub.classes.Client;
+import jar.gymhub.db.GymConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import jar.gymhub.faces.DaoClient;
 
-public class daoClientImpl extends gymConnect implements daoClient {
+public class DaoClientImpl extends GymConnect implements DaoClient {
     
     @Override
-    public void uploadClient(String URL, client e) {
+    public void uploadClient(String URL, Client e) {
         setURL(URL);
         try {
             this.getConnection();
@@ -41,7 +41,7 @@ public class daoClientImpl extends gymConnect implements daoClient {
     }
 
     @Override
-    public void modifyClient(client e) throws Exception {
+    public void modifyClient(Client e) throws Exception {
         try {
             this.getConnection();
             String sql = "UPLOAD client (nameClient, documentClient, startDate, finalDate, subState, subType, number, eMail, height, weight, payment) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?))";
@@ -67,15 +67,15 @@ public class daoClientImpl extends gymConnect implements daoClient {
     }
 
     @Override
-    public ArrayList<client> listOfClient() throws Exception {
-        ArrayList<client> listOfClients = new ArrayList();
+    public ArrayList<Client> listOfClient() throws Exception {
+        ArrayList<Client> listOfClients = new ArrayList();
         
         try{
             this.getConnection();
             PreparedStatement up = conn.prepareStatement("SELECT * FROM client");
             ResultSet rs = up.executeQuery();
             while(rs.next()){
-                client client = new client();
+                Client client = new Client();
                 client.setNameClient(rs.getString("nameClient"));
                 client.setDocumentClient(rs.getInt("documentClient"));
                 client.setStartDate(rs.getString("startDate"));
@@ -99,15 +99,15 @@ public class daoClientImpl extends gymConnect implements daoClient {
     }
 
     @Override
-    public ArrayList<client> searchByClient(String Name) throws Exception {
-        ArrayList<client> listForSearch = new ArrayList();
+    public ArrayList<Client> searchByClient(String Name) throws Exception {
+        ArrayList<Client> listForSearch = new ArrayList();
         try {
             this.getConnection();
             PreparedStatement up = conn.prepareStatement("SELECT * FROM client Where nameClient = ?");
             up.setString(1, Name);
             ResultSet rs = up.executeQuery();
             while (rs.next()){
-                client client = new client();
+                Client client = new Client();
                 client.setNameClient(rs.getString("nameClient"));
                 client.setDocumentClient(rs.getInt("documentClient"));
                 client.setStartDate(rs.getString("startDate"));
@@ -130,7 +130,7 @@ public class daoClientImpl extends gymConnect implements daoClient {
     }
 
     @Override
-    public void deleteClient(client e) throws Exception {
+    public void deleteClient(Client e) throws Exception {
         
     }
     

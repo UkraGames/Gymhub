@@ -4,14 +4,14 @@ package jar.gymhub.classes;
  *
  * @author diego
  */
-public class subType {
+public class SubType {
     private int idSubType;
     private String description;
     
     //Constructors
-    public subType(){}
+    public SubType(){}
 
-    public subType(int idSubType, String description) {
+    public SubType(int idSubType, String description) {
         this.idSubType = idSubType;
         this.description = description;
     }

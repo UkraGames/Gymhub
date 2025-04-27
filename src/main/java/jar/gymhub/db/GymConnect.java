@@ -7,7 +7,7 @@ import java.sql.SQLException;
  *
  * @author diego
  */
-public abstract class gymConnect {
+public abstract class GymConnect {
     protected Connection conn;
     protected String dataBaseURL; 
     

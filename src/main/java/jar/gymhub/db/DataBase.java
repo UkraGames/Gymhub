@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 /*
     ESTA CLASE ESTÁ DESTINADA A ÚNICAMENTE SER USADA UNA VEZ AL INICIAR EL PROGRAMA, POR FAVOR TRATAR DE NO TOCAR O USARLA MÁS
 */
-public class dataBase extends gymConnect {
+public class DataBase extends GymConnect {
     String path;
-    public dataBase() { //Inicializa todo, crea el path apartir de la detección del sistema
+    public DataBase() { //Inicializa todo, crea el path apartir de la detección del sistema
         var newPath = detectSystem();
         setURL(newPath);
         this.path = newPath;
@@ -107,7 +107,7 @@ public class dataBase extends gymConnect {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
                     //Crea el archivo primero que nada
             } catch (IOException ex) {
-                Logger.getLogger(dataBase.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }   
