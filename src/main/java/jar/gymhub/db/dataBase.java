@@ -25,17 +25,13 @@ public class dataBase extends gymConnect {
         var systemName = System.getProperty("os.name");
         systemName = systemName.toLowerCase();
         if (systemName.contains("windows")) {
-            System.out.println("Windows");
             newPathOfSystem = System.getProperty("user.home") + "\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
         } else if (systemName.contains("linux")) {
-            System.out.println("Linux");
             newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBaase.db"; //Actualmente funcionando
         } else if (systemName.contains("mac")) {
-            System.out.println("Mac");
             newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
         } else {
-            System.out.println("Otro");
-            newPathOfSystem = "tmp/GymHubApp/dataBae.db"; //¿Qué sería? ¿BSD? ¿Quién usa eso honestamente? XD
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBae.db"; //¿Qué sería? ¿BSD? ¿Quién usa eso honestamente? XD
         }
         return newPathOfSystem;
     }
