@@ -1,9 +1,9 @@
-package jar.gymhub.faces;
+package com.gymhub.dao;
 /**
  *
  * @author diego
  */
-import jar.gymhub.classes.PaymentType;
+import com.gymhub.model.PaymentType;
 import java.util.ArrayList;
 public interface DaoPaymentType {
     public void uploadPaymentType(PaymentType e) throws Exception;

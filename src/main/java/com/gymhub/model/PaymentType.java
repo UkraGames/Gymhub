@@ -1,4 +1,4 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 //IT WAS MADE BY ME DIEGO, ONCE MORE MUAJAJAJAJAJA
 public class PaymentType {
     private int idPaymentType;

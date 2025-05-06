@@ -3,13 +3,13 @@ package jar.gymhub.dao;
  *
  * @author diego
  */
-import jar.gymhub.classes.Client;
+import com.gymhub.model.Client;
 import jar.gymhub.db.GymConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import jar.gymhub.faces.DaoClient;
+import com.gymhub.dao.DaoClient;
 
 public class DaoClientImpl extends GymConnect implements DaoClient {
     

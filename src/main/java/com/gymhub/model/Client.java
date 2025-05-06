@@ -1,4 +1,4 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 import java.util.Date;
 /**
  *

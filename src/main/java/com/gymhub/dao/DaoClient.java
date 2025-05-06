@@ -1,9 +1,9 @@
-package jar.gymhub.faces;
+package com.gymhub.dao;
 /**
  *
  * @author diego
  */
-import jar.gymhub.classes.Client;
+import com.gymhub.model.Client;
 import java.util.ArrayList;
 public interface DaoClient {
     public void uploadClient (String URL, Client e) throws Exception;

@@ -1,4 +1,4 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 /**
  *
  * @author diego

@@ -1,9 +1,9 @@
-package jar.gymhub.faces;
+package com.gymhub.dao;
 /**
  *
  * @author diego
  */
-import jar.gymhub.classes.SubType;
+import com.gymhub.model.SubType;
 import java.util.ArrayList;
 public interface DaoSubType {
     public void uploadSubType(SubType e) throws Exception;
