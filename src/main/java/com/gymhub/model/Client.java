@@ -1,25 +1,26 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 import java.util.Date;
 /**
  *
  * @author diego - Only me can modify this, pls don't touch anything
  */
-public class client { //Client class
+public class Client { //Client class
     private String nameClient;
     private int documentClient;
-    private Date startDate;
-    private Date finalDate;
+    private String startDate;
+    private String finalDate;
     private int subState; // "sub" is for Subscription
     private int subType; //"sub" again for subscription
     private String number;
     private String eMail;
-    private float heitght;
+    private float height;
+    private float weight;
     private int payment;
         
     //Constructors
-    public client (){} //void constructor
+    public Client (){} //void constructor
 
-    public client(String nameClient, int documentClient, Date startDate, Date finalDate, int subState, int subType, String number, String eMail, float heitght, int payment) {
+    public Client(String nameClient, int documentClient, String startDate, String finalDate, int subState, int subType, String number, String eMail, float height,float weight, int payment) {
         this.nameClient = nameClient;
         this.documentClient = documentClient;
         this.startDate = startDate;
@@ -28,7 +29,8 @@ public class client { //Client class
         this.subType = subType;
         this.number = number;
         this.eMail = eMail;
-        this.heitght = heitght;
+        this.height = height;
+        this.weight = weight;
         this.payment = payment;
     }
         
@@ -50,19 +52,19 @@ public class client { //Client class
         this.documentClient = documentClient;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinalDate() {
+    public String getFinalDate() {
         return finalDate;
     }
 
-    public void setFinalDate(Date finalDate) {
+    public void setFinalDate(String finalDate) {
         this.finalDate = finalDate;
     }
 
@@ -98,12 +100,12 @@ public class client { //Client class
         this.eMail = eMail;
     }
 
-    public float getHeitght() {
-        return heitght;
+    public float getHeight() {
+        return height;
     }
 
-    public void setHeitght(float heitght) {
-        this.heitght = heitght;
+    public void setHeitght(float height) {
+        this.height = height;
     }
 
     public int getPayment() {
@@ -112,6 +114,14 @@ public class client { //Client class
 
     public void setPayment(int payment) {
         this.payment = payment;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
     
         

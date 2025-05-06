@@ -1,14 +1,14 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 //IT WAS MADE BY ME DIEGO, ONCE MORE MUAJAJAJAJAJA
-public class paymentType {
+public class PaymentType {
     private int idPaymentType;
     private String description; //LOL I wrote "Stirng" at first
     
     //Constructors 
 
-    public paymentType() {}
+    public PaymentType() {}
 
-    public paymentType(int idPaymentType, String description) {
+    public PaymentType(int idPaymentType, String description) {
         this.idPaymentType = idPaymentType;
         this.description = description;
     }

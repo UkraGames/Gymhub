@@ -2,28 +2,40 @@ package jar.gymhub.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class gymConnect {
+
+/**
+ *
+ * @author diego
+ */
+public abstract class GymConnect {
     protected Connection conn;
-    private String dataBaseURL = "jdbc:sqlite:";
+    protected String dataBaseURL; 
     
-    public gymConnect(String URL){
-        dataBaseURL.concat(URL);
-    }
-    
+    /**
+     *
+     */
     public void getConnection(){
         if (dataBaseURL != null){
             try {
                 conn = DriverManager.getConnection(dataBaseURL);
                 System.out.println("Conexion exitosa");
+                System.out.println("Connected");
             } catch (SQLException e){
-                System.out.println("Error al conectar" + e.getMessage());
+                System.out.println("Error at connect" + e.getMessage());
             }
+        } else {
+            System.out.println("There's no path");
         }
     }
     
+    public void setURL(String URL){
+        this.dataBaseURL = "jdbc:sqlite:" + URL;
+    }
+    
+    
     public void closeConnection(){
         try{
-            if (conn == null){
+            if (conn == null || conn.isClosed()){
                 return;
             }
             if (conn.isClosed()){
@@ -31,7 +43,7 @@ public class gymConnect {
                 conn.close();
             }
         } catch (SQLException e){
-            System.out.println("Error al conectar" + e.getMessage());
+            System.out.println("Error at connect" + e.getMessage());
         }
     }
 }

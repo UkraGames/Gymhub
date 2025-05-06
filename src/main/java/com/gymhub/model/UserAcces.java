@@ -1,18 +1,18 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 /**
  *
  * @author diego
  */
-public class userAcces {
+public class UserAcces {
     private int idUser; //Wait wdym with ID? it's only one Admin!
     private String userName;
     private String password;
     
     //Constructors
 
-    public userAcces() {} //idk if it matters, but I hate when this shit occupes two lines
+    public UserAcces() {} //idk if it matters, but I hate when this shit occupes two lines
 
-    public userAcces(int idUser, String userName, String password) {
+    public UserAcces(int idUser, String userName, String password) {
         this.idUser = idUser;
         this.userName = userName;
         this.password = password;

@@ -1,11 +1,11 @@
-package jar.gymhub.faces;
+package com.gymhub.dao;
 /**
  *
  * @author diego
  */
-import jar.gymhub.classes.State;
+import com.gymhub.model.State;
 import java.util.ArrayList;
-public interface daoState {
+public interface DaoState {
     public void uploadState (State e) throws Exception;
     public void modifyState (State e) throws Exception;
     public ArrayList<State> listOfState() throws Exception;

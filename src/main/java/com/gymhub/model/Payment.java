@@ -1,17 +1,17 @@
-package jar.gymhub.classes;
+package com.gymhub.model;
 /**
  *
  * @author diego
  */
-public class payment {
+public class Payment {
     private int idPayment;
     private int paymentType;
     private float paymentAmount;
     
     //Constructors
-    public payment() {}
+    public Payment() {}
     
-    public payment(int idPayment, int paymentType, float paymentAmount) {
+    public Payment(int idPayment, int paymentType, float paymentAmount) {
         this.idPayment = idPayment;
         this.paymentType = paymentType;
         this.paymentAmount = paymentAmount;
