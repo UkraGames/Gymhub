@@ -1,8 +1,7 @@
 package com.gymhub;
 
 import com.gymhub.model.Client;
-import jar.gymhub.dao.DaoClientImpl;
-import jar.gymhub.db.DataBase;
+import com.gymhub.dao.DaoClientImpl;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +17,9 @@ public class Main {
         lista.add("hello");
         lista.add("World");
         lista.add("!");
-        lista.printArray();
+        lista.add(234324234);
+        
+        System.out.println(lista);
      }
 }
 

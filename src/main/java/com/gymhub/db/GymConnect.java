@@ -1,4 +1,4 @@
-package jar.gymhub.db;
+package com.gymhub.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
