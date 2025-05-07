@@ -18,8 +18,7 @@ public class Main {
         lista.add("World");
         lista.add("!");
         lista.add(234324234);
-        
         System.out.println(lista);
-     }
+    }
 }
 

@@ -11,17 +11,21 @@ public class ArrayGym {
     static private Node objectList = null;
     public ArrayGym(){}
     
-    @Override
-    public String toString(){
-        String toString = "[ ";
-        var current = objectList;
-        while (current.next != null){
-            toString.concat((String) current.dato);
-            toString.concat(", ");
+@Override
+public String toString() {
+    String toString = "[";
+    var current = objectList;
+    while (current != null) {
+        toString += current.dato;
+        if (current.next != null) {
+            toString += ", ";
         }
-        toString.concat(" ]");
-        return toString;
+        current = current.next;
     }
+    toString += "]";
+    return toString;
+}
+
     
     //Añadir un Nodo a la lista
     public void add(Object e) {
