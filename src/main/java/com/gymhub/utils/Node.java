@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.gymhub.utils;
-import com.gymhub.utils.Node;
 
 /**
  *
  * @author diego
  */
-public class AbstractArray {
-    
+public class Node {
+    Object dato;
+    Node next = null;
 }

@@ -1,14 +1,20 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Te mplates/Classes/Class.java to edit this template
  */
 package com.gymhub.utils;
+/**
+ * 
+ *  IMPORTS
+ * 
+ */
+import com.gymhub.utils.Node;
 
 /**
  *
  * @author diego
  */
-public class ArrayGym {
+public class ArrayGym extends AbstractArray {
     static private Node objectList = null;
     public ArrayGym(){}
     @Override
@@ -59,11 +65,5 @@ public class ArrayGym {
         System.out.print("NULL");
         System.gc();
     }
-}
-
-class Node{
-    Object dato;
-    Node next = null;
-    
 }
 
