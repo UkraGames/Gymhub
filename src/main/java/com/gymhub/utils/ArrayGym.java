@@ -11,7 +11,24 @@ package com.gymhub.utils;
 public class ArrayGym {
     static private Node objectList = null;
     public ArrayGym(){}
-    
+    @Override
+    public String toString(){
+        String toString = "[";
+        var current = objectList;
+        while (current != null){
+            if (current.next == null){
+                toString += current.dato;
+                current = current.next;
+            } else {
+                toString += current.dato;
+                toString += ", ";
+                current = current.next;
+            }
+        }
+        toString += "]";
+        System.gc();
+        return toString;  
+    }
     //Añadir un Nodo a la lista
     public void add(Object e) {
         Node newNode = new Node(); //Crea un nuevo Nodo
@@ -30,9 +47,9 @@ public class ArrayGym {
             
             
         }
-        
+        System.gc();
     }
-    public void printArray(){
+    protected void printArray(){
         Node current = objectList;
         while (current != null){
             System.out.print(current.dato +" -> ");
@@ -40,7 +57,7 @@ public class ArrayGym {
         }
         
         System.out.print("NULL");
-               
+        System.gc();
     }
 }
 

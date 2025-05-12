@@ -1,10 +1,10 @@
-package jar.gymhub.dao;
+package com.gymhub.dao;
 /**
  *
  * @author diego
  */
 import com.gymhub.model.Client;
-import jar.gymhub.db.GymConnect;
+import com.gymhub.db.GymConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

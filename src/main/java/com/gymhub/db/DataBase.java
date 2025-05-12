@@ -1,4 +1,4 @@
-package jar.gymhub.db;
+package com.gymhub.db;
 /**
  * @author diego
  */
