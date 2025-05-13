@@ -124,5 +124,8 @@ public class Client { //Client class
         this.weight = weight;
     }
     
-        
+    @Override
+    public String toString(){
+        return nameClient;
+    }
 }

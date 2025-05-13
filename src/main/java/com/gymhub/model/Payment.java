@@ -16,7 +16,6 @@ public class Payment {
         this.paymentType = paymentType;
         this.paymentAmount = paymentAmount;
     }
-
     
     //Getters and Setters
 
@@ -44,7 +43,15 @@ public class Payment {
         this.paymentAmount = paymentAmount;
     }
 
-    
-    
+    @Override
+    public String toString(){
+        String text = null;
+        switch (paymentType){
+            case 1: text ="1 - Efectivo";
+            case 2: text ="2 - Transferencia";
+        }
+        return text;
+    }
+ 
     
 }

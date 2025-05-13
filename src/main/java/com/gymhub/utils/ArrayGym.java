@@ -65,5 +65,13 @@ public class ArrayGym extends AbstractArray {
         System.out.print("NULL");
         System.gc();
     }
+    
+    public void remove(String toDelete){
+        
+    }
+    
+    public void delete(int index){
+        
+    }
 }
 
