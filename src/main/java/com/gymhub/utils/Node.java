@@ -10,5 +10,5 @@ package com.gymhub.utils;
  */
 public class Node {
     Object dato;
-    Node next = null;
+    Node next;
 }
