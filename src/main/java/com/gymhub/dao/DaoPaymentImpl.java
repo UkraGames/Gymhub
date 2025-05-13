@@ -11,6 +11,7 @@ package com.gymhub.dao;
 import com.gymhub.db.GymConnect;
 import com.gymhub.model.Payment;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public class DaoPaymentImpl extends GymConnect implements DaoPayment {
@@ -65,12 +66,44 @@ public class DaoPaymentImpl extends GymConnect implements DaoPayment {
     @Override
     public ArrayList<Payment> listOfPayment() throws Exception {
         ArrayList<Payment> list = new ArrayList();
+        try{
+            PreparedStatement up = conn.prepareStatement("SELECT * FROM payment");
+            ResultSet rs = up.executeQuery();
+            while (rs.next()){
+                Payment obj = new Payment();
+                obj.setIdPayment(rs.getInt("idPayment"));
+                obj.setPaymentType(rs.getByte("paymentType"));
+                obj.setPaymentAmount(rs.getFloat("paymentAmount"));
+                list.add(obj);
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }finally {
+           this.closeConnection();
+        }
         return list;
     }
 
     @Override
-    public ArrayList<Payment> searchByPayment(String name) throws Exception {
+    public ArrayList<Payment> searchByPayment(int id) throws Exception {
         ArrayList<Payment> list = new ArrayList();
+        try{
+            PreparedStatement up = conn.prepareStatement("SELECT * FROM payment WHERE idPayment = ?");
+            up.setInt(1, id);
+            ResultSet rs = up.executeQuery();
+            while (rs.next()){
+                Payment obj = new Payment();
+                obj.setIdPayment(rs.getInt("idPayment"));
+                obj.setPaymentType(rs.getByte("paymentType"));
+                obj.setPaymentAmount(rs.getFloat("paymentAmount"));
+                list.add(obj);
+            }
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        } finally {
+            this.getConnection();
+        }
+        
         return list;
     }
     

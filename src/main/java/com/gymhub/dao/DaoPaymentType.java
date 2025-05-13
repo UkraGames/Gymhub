@@ -10,6 +10,6 @@ public interface DaoPaymentType {
     public void modifyPaymentType (PaymentType e) throws Exception;
     public void deletePaymentType (PaymentType e) throws Exception;
     public ArrayList<PaymentType> listOfPaymentType() throws Exception;
-    public ArrayList<PaymentType> searchByPaymentType(String name) throws Exception;
+    public ArrayList<PaymentType> searchByPaymentType(int id) throws Exception;
     
 }
