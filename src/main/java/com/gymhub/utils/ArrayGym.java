@@ -15,12 +15,12 @@ import com.gymhub.utils.Node;
  * @author diego
  */
 public class ArrayGym extends AbstractArray {
-    static private Node objectList = null;
+
     public ArrayGym(){}
     @Override
     public String toString(){
         String toString = "[";
-        var current = objectList;
+        Node current = objectList;
         while (current != null){
             if (current.next == null){
                 toString += current.dato;
@@ -55,14 +55,20 @@ public class ArrayGym extends AbstractArray {
         }
         System.gc();
     }
-    protected void printArray(){
+    public void printArray(){
         Node current = objectList;
-        while (current != null){
+        int contador = 0;
+        while (current != null && contador < 100){
             System.out.print(current.dato +" -> ");
             current = current.next;
+            contador ++;
+        }if (contador >= 100){
+            System.out.println("posible bucle. . . ");
+            
+        }else{
+            System.out.print("NULL");
+
         }
-        
-        System.out.print("NULL");
         System.gc();
     }
     
