@@ -35,8 +35,9 @@ public class DaoPaymentTypeImpl extends GymConnect implements DaoPaymentType{
     public void modifyPaymentType(PaymentType e) throws Exception {
         try{
             this.getConnection();
-            PreparedStatement up = conn.prepareStatement("UPDATE paymentType WHERE idPaymentType = ?");
-            up.setInt(1, e.getIdPaymentType());
+            PreparedStatement up = conn.prepareStatement("UPDATE paymentType SET description = ? WHERE idPaymentType = ?");
+            up.setString(1, e.getDescription());
+            up.setInt(2, e.getIdPaymentType());
             up.executeUpdate();
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -86,7 +87,7 @@ public class DaoPaymentTypeImpl extends GymConnect implements DaoPaymentType{
         ArrayList<PaymentType> list = new ArrayList<PaymentType>();
         try {
             this.getConnection();
-            PreparedStatement up = conn.prepareStatement("SELECT FROM paymentType WHERE idPaymentType = ?");
+            PreparedStatement up = conn.prepareStatement("SELECT * FROM paymentType WHERE idPaymentType = ?");
             up.setInt(1, id);
             ResultSet rs = up.executeQuery();
             while (rs.next()){
