@@ -6,9 +6,9 @@ package com.gymhub.dao;
 import com.gymhub.model.Client;
 import java.util.ArrayList;
 public interface DaoClient {
-    public void uploadClient (String URL, Client e) throws Exception;
+    public void uploadClient (Client e) throws Exception;
     public void modifyClient (Client e) throws Exception;
-    public void deleteClient (Client e) throws Exception;
+    public void deleteClient (int id) throws Exception;
     public ArrayList<Client> listOfClient () throws Exception;
     public ArrayList<Client> searchByClient (String name) throws Exception;
 }

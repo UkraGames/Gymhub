@@ -9,5 +9,5 @@ public interface DaoState {
     public void uploadState (State e) throws Exception;
     public void modifyState (State e) throws Exception;
     public ArrayList<State> listOfState() throws Exception;
-    public ArrayList<State> searchByState () throws Exception;
+    public ArrayList<State> searchByState (int id) throws Exception;
 }

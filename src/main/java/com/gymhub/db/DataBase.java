@@ -20,21 +20,6 @@ public class DataBase extends GymConnect {
         createDataBase();
     }
     //Este método debería detectar qué tipo de sistema tiene el usuario. Iré marcando cuáles funcionan
-    private String detectSystem(){
-        String newPathOfSystem;
-        var systemName = System.getProperty("os.name");
-        systemName = systemName.toLowerCase();
-        if (systemName.contains("windows")) {
-            newPathOfSystem = System.getProperty("user.home") + "\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
-        } else if (systemName.contains("linux")) {
-            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBaase.db"; //Actualmente funcionando
-        } else if (systemName.contains("mac")) {
-            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
-        } else {
-            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBae.db"; //¿Qué sería? ¿BSD? ¿Quién usa eso honestamente? XD
-        }
-        return newPathOfSystem;
-    }
     //Esta sentencia crea la base de datos, la base fue creada por Alejo, no sé si las relaciones estén bien pero tampoco importa (Tal vez) 
     //Si hay errores en la base, culpen a Alejandro XD || arreglado un poco el día 14/03/2025.
     private void createDataBase(){

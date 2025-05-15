@@ -12,10 +12,12 @@ import java.util.ArrayList;
 import com.gymhub.dao.DaoClient;
 
 public class DaoClientImpl extends GymConnect implements DaoClient {
-    
+    public DaoClientImpl(){
+        this.setURL(this.detectSystem());
+    }
     @Override
-    public void uploadClient(String URL, Client e) {
-        setURL(URL);
+    public void uploadClient(Client e) {
+        
         try {
             this.getConnection();
             String sql = "INSERT INTO client (nameClient, documentClient, startDate, finalDate, subState, subType, number, eMail, height, weight, payment) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -44,19 +46,19 @@ public class DaoClientImpl extends GymConnect implements DaoClient {
     public void modifyClient(Client e) throws Exception {
         try {
             this.getConnection();
-            String sql = "UPLOAD client (nameClient, documentClient, startDate, finalDate, subState, subType, number, eMail, height, weight, payment) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?))";
+            String sql = "UPDATE client SET nameClient= ?, startDate = ?, finalDate = ?, subState = ?, subType = ?, number = ?, eMail = ?, height = ?, weight = ?, payment WHERE documentClient = ?";
             PreparedStatement up = conn.prepareStatement(sql);
             up.setString(1, e.getNameClient());
-            up.setInt(2, e.getDocumentClient());
-            up.setString(3, e.getStartDate());
-            up.setString(4, e.getFinalDate());
-            up.setInt(5, e.getSubState());
-            up.setInt(6, e.getSubType());
-            up.setString(7, e.getNumber());
-            up.setString(8, e.geteMail());
-            up.setFloat(9, e.getHeight());
-            up.setFloat(10, e.getWeight());
-            up.setInt(11, e.getPayment());
+            up.setString(2, e.getStartDate());
+            up.setString(3, e.getFinalDate());
+            up.setInt(4, e.getSubState());
+            up.setInt(5, e.getSubType());
+            up.setString(6, e.getNumber());
+            up.setString(7, e.geteMail());
+            up.setFloat(8, e.getHeight());
+            up.setFloat(9, e.getWeight());
+            up.setInt(10, e.getPayment());
+            up.setInt(12, e.getDocumentClient());
             up.executeUpdate();
         }catch(SQLException ex){
             ex.printStackTrace();
@@ -130,9 +132,18 @@ public class DaoClientImpl extends GymConnect implements DaoClient {
     }
 
     @Override
-    public void deleteClient(Client e) throws Exception {
+    public void deleteClient(int id) throws Exception {
+        try {
+            this.getConnection();
+            PreparedStatement up = conn.prepareStatement("DELETE FROM client WHERE documentClient = ?");
+            up.setInt(1, id);
+            up.executeUpdate();
+        } catch (SQLException ex){
+            this.closeConnection();
+        }
         
     }
+
     
     
 }

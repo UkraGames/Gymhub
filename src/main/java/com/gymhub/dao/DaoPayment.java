@@ -10,5 +10,5 @@ public interface DaoPayment {
     public void modifyPayment (Payment e) throws Exception;
     public void deletePayment (Payment e) throws Exception;
     public ArrayList<Payment> listOfPayment () throws Exception;
-    public ArrayList<Payment> searchByPayment (String name) throws Exception;
+    public ArrayList<Payment> searchByPayment (int id) throws Exception;
 }

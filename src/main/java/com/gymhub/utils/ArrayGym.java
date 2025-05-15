@@ -1,36 +1,43 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Te mplates/Classes/Class.java to edit this template
  */
 package com.gymhub.utils;
+/**
+ * 
+ *  IMPORTS
+ * 
+ */
+import com.gymhub.utils.Node;
+
 /**
  *
  * @author diego
  */
-public class ArrayGym {
-    static private Node objectList = null;
-    public ArrayGym(){}
-    
-@Override
-public String toString() {
-    String toString = "[";
-    var current = objectList;
-    while (current != null) {
-        toString += current.dato;
-        if (current.next != null) {
-            toString += ", ";
-        }
-        current = current.next;
-    }
-    toString += "]";
-    return toString;
-}
+public class ArrayGym extends AbstractArray {
 
-    
+    public ArrayGym(){}
+    @Override
+    public String toString(){
+        String toString = "[";
+        Node current = objectList;
+        while (current != null){
+            if (current.next == null){
+                toString += current.dato;
+                current = current.next;
+            } else {
+                toString += current.dato;
+                toString += ", ";
+                current = current.next;
+            }
+        }
+        toString += "]";
+        System.gc();
+        return toString;  
+    }
     //Añadir un Nodo a la lista
     public void add(Object e) {
-        
-        Node newNode = new Node(); //Crea un nuevo Nodo
+        Node newNode = new Node(e); //Crea un nuevo Nodo
         newNode.dato = e; //Le damos el valor del objeto al nodo
         newNode.next = null; //declaramos el siguiente como nulo para evitar problemas de memoria xd
         
@@ -52,18 +59,31 @@ public String toString() {
            
             
         }
-        
+        System.gc();
     }
     public void printArray(){ //Imprime el Array
         Node current = objectList;
-        while (current != null){
-            System.out.print("(" + current.index + ")");
+        int contador = 0;
+        while (current != null && contador < 100){
             System.out.print(current.dato +" -> ");
             current = current.next;
+            contador ++;
+        }if (contador >= 100){
+            System.out.println("posible bucle. . . ");
+            
+        }else{
+            System.out.print("NULL");
+
         }
+        System.gc();
+    }
+    
+    public void remove(String toDelete){
         
-        System.out.print("NULL");
-               
+    }
+    
+    public void delete(int index){
+        
     }
     //Borrar un Nodo
     public void delete(int index){ 

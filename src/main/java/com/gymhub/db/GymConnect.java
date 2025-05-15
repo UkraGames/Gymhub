@@ -8,8 +8,8 @@ import java.sql.SQLException;
  * @author diego
  */
 public abstract class GymConnect {
-    protected Connection conn;
-    protected String dataBaseURL; 
+    protected Connection conn; //Variable de conexión
+    protected String dataBaseURL; //Paso hacia la URL (La base de Datos)
     
     /**
      *
@@ -45,5 +45,25 @@ public abstract class GymConnect {
         } catch (SQLException e){
             System.out.println("Error at connect" + e.getMessage());
         }
+    }
+
+    /**
+     *
+     * @return This is only for using with DataBase.java and be able to use it in here
+     */
+    protected String detectSystem(){
+        String newPathOfSystem;
+        var systemName = System.getProperty("os.name");
+        systemName = systemName.toLowerCase();
+        if (systemName.contains("windows")) {
+            newPathOfSystem = System.getProperty("user.home") + "\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
+        } else if (systemName.contains("linux")) {
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBaase.db"; //Actualmente funcionando
+        } else if (systemName.contains("mac")) {
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
+        } else {
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBae.db"; //¿Qué sería? ¿BSD? ¿Quién usa eso honestamente? XD
+        }
+        return newPathOfSystem;
     }
 }
