@@ -11,4 +11,9 @@ package com.gymhub.utils;
 public class Node {
     Object dato;
     Node next;
+    
+    public Node(Object dato){
+        this.dato = dato;
+        this.next = null;
+    }
 }
