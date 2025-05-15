@@ -6,6 +6,7 @@ package com.gymhub.Services;
 
 import com.gymhub.dao.DaoStateImpl;
 import com.gymhub.model.State;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,9 +20,16 @@ public class StateService {
     }
     
     
-    public void createState(State state){
+    public void createState(State state) throws Exception {
         dao.uploadState(state);
     }
     
-    public 
+    public void modifyState(State state) throws Exception{
+        dao.modifyState(state);
+    }
+    
+    public ArrayList<State> getAllStates() throws Exception {
+        return dao.listOfState();
+    }
+            
 }
