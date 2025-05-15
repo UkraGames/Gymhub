@@ -256,7 +256,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
 
     private void initReg(JPanel e){
         var pl = e;
-        pl.setSize(600,250);
+        pl.setSize(Muestra.getSize());
         Muestra.removeAll();
         Muestra.add(pl,BorderLayout.CENTER);
         Muestra.revalidate();
