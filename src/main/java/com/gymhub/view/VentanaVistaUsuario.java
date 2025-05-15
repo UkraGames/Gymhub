@@ -137,6 +137,8 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         jLabel3.setText("************");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        Salir.setBackground(new java.awt.Color(130, 170, 210));
+        Salir.setForeground(new java.awt.Color(0, 0, 0));
         Salir.setText("Salir");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
