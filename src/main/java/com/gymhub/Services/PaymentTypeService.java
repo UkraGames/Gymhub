@@ -11,5 +11,22 @@ package com.gymhub.Services;
 import com.gymhub.dao.DaoPaymentType;
 import com.gymhub.model.PaymentType;
 public class PaymentTypeService {
+    private DaoPaymentType dao;
+    public PaymentTypeService(DaoPaymentType dao){
+        this.dao = dao;
+        
+    }
     
+    public void createATypeOfPayment(PaymentType payment) throws Exception {
+        dao.uploadPaymentType(payment);
+
+    }
+
+    public void modifyTypeOfPyment(PaymentType payment) throws Exception{
+        dao.modifyPaymentType(payment);
+    }
+    
+    public void deleteTypeOfPayment()
+
 }
+
