@@ -37,7 +37,7 @@ public class ArrayGym extends AbstractArray {
     }
     //Añadir un Nodo a la lista
     public void add(Object e) {
-        Node newNode = new Node(e); //Crea un nuevo Nodo
+        Node newNode = new Node(); //Crea un nuevo Nodo
         newNode.dato = e; //Le damos el valor del objeto al nodo
         newNode.next = null; //declaramos el siguiente como nulo para evitar problemas de memoria xd
         
@@ -81,10 +81,7 @@ public class ArrayGym extends AbstractArray {
     public void remove(String toDelete){
         
     }
-    
-    public void delete(int index){
-        
-    }
+   
     //Borrar un Nodo
     public void delete(int index){ 
         int size = size();

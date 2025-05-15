@@ -10,6 +10,7 @@ package com.gymhub.Services;
  */
 import com.gymhub.dao.DaoPaymentType;
 import com.gymhub.model.PaymentType;
+import java.util.ArrayList;
 public class PaymentTypeService {
     private DaoPaymentType dao;
     public PaymentTypeService(DaoPaymentType dao){
@@ -26,7 +27,18 @@ public class PaymentTypeService {
         dao.modifyPaymentType(payment);
     }
     
-    public void deleteTypeOfPayment()
+    public void deleteTypeOfPayment(PaymentType payment) throws Exception{
+        dao.deletePaymentType(payment);
+       
+    }
+    
+    public ArrayList<PaymentType> getAllPaymentType() throws Exception {
+        return dao.listOfPaymentType();
+    }
+    
+    public ArrayList<PaymentType> searchPaymentType(int id) throws Exception {
+        return dao.searchByPaymentType(id);
+    }
 
 }
 

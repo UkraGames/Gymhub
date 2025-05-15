@@ -4,10 +4,24 @@
  */
 package com.gymhub.Services;
 
+import com.gymhub.dao.DaoStateImpl;
+import com.gymhub.model.State;
+
 /**
  *
  * @author diego
  */
 public class StateService {
+    private DaoStateImpl dao;
     
+    public StateService(DaoStateImpl dao){
+        this.dao = dao; 
+    }
+    
+    
+    public void createState(State state){
+        dao.uploadState(state);
+    }
+    
+    public 
 }
