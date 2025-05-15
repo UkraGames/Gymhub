@@ -18,6 +18,7 @@ public abstract class GymConnect {
         if (dataBaseURL != null){
             try {
                 conn = DriverManager.getConnection(dataBaseURL);
+                System.out.println("Conexion exitosa");
                 System.out.println("Connected");
             } catch (SQLException e){
                 System.out.println("Error at connect" + e.getMessage());
