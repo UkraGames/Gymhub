@@ -6,14 +6,12 @@ package com.gymhub.Services;
 
 import com.gymhub.dao.DaoUserAcces;
 import com.gymhub.model.UserAcces;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author diego
  */
 public class AdminService {
-    private DaoUserAcces userDao;
+    private final DaoUserAcces userDao;
 
     public AdminService(DaoUserAcces userDao){
         this.userDao = userDao;

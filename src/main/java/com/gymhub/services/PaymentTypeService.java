@@ -12,7 +12,7 @@ import com.gymhub.dao.DaoPaymentType;
 import com.gymhub.model.PaymentType;
 import java.util.ArrayList;
 public class PaymentTypeService {
-    private DaoPaymentType dao;
+    private final DaoPaymentType dao;
     public PaymentTypeService(DaoPaymentType dao){
         this.dao = dao;
         

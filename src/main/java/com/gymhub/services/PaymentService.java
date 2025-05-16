@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author diego
  */
 public class PaymentService {
-    private DaoPayment dao;
+    private final DaoPayment dao;
     
     public PaymentService(DaoPayment dao){
         this.dao = dao;

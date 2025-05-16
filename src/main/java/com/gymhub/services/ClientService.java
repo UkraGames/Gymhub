@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author diego
  */
 public class ClientService {
-    private DaoClient cli;
+    private final DaoClient cli;
     
     public ClientService(DaoClient client){
-        this.cli = cli;
+        this.cli = client;
     }
     
     public void insertClient(Client client) throws Exception {

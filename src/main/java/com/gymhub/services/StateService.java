@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author diego
  */
 public class StateService {
-    private DaoStateImpl dao;
+    private final DaoStateImpl dao;
     
     public StateService(DaoStateImpl dao){
         this.dao = dao; 
