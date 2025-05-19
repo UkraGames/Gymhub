@@ -1,6 +1,7 @@
 package com.gymhub.dao;
 
 import com.gymhub.model.UserAcces;
+import java.util.ArrayList;
 
 public interface DaoUserAcces {
     /**
@@ -11,4 +12,7 @@ public interface DaoUserAcces {
      * @throws Exception si ocurre un error al insertar
      */
     void insertUser(UserAcces user) throws Exception;
+    ArrayList listAllUsers() throws Exception;
 }
+
+   

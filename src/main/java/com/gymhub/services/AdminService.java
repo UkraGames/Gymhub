@@ -28,4 +28,5 @@ public class AdminService {
         userDao.insertUser(user);
 
     }
+    
 }

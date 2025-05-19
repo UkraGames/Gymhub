@@ -7,10 +7,14 @@ import java.sql.SQLException;
  *
  * @author diego
  */
+
 public abstract class GymConnect {
     protected Connection conn; //Variable de conexión
     protected String dataBaseURL; //Paso hacia la URL (La base de Datos)
     
+    public GymConnect (){
+        this.setURL(detectSystem());
+    }
     /**
      *
      */
@@ -28,7 +32,7 @@ public abstract class GymConnect {
         }
     }
     
-    public void setURL(String URL){
+    protected final void setURL(String URL){
         this.dataBaseURL = "jdbc:sqlite:" + URL;
     }
     
@@ -46,7 +50,7 @@ public abstract class GymConnect {
             System.out.println("Error at connect" + e.getMessage());
         }
     }
-
+    
     /**
      *
      * @return This is only for using with DataBase.java and be able to use it in here
