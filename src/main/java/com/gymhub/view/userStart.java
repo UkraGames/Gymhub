@@ -251,7 +251,12 @@ public class userStart extends javax.swing.JFrame {
                 var list = service.getAdmin();
                 String pass = new String(passText.getPassword());
                 if (list.get(0).getUserName().equals(userName.getText()) && list.get(0).getPassword().equals(pass)){
-                    JOptionPane.showInputDialog("¡Inicio Exitoso!\nCierre la ventana");
+                    JOptionPane.showMessageDialog(this, "¡Inicio Exitoso!\nCierre la ventana");
+                    
+                } else {
+                   JOptionPane.showMessageDialog(this, "Usuario o Contraseña Incorrecta, intente nuevamente");
+                   this.setVisible(false);
+                    
                 }
             } catch (Exception ex) {
                 Logger.getLogger(userStart.class.getName()).log(Level.SEVERE, null, ex);

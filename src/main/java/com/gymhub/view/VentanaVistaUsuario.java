@@ -256,7 +256,6 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
-            
         } else {
             userStart ventanaDeRegistro = new userStart();
             JDialog dialog;
