@@ -265,6 +265,9 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
+            if (!ventanaDeRegistro.getUserAcced()){
+                System.exit(0);
+            }
         }
     }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed

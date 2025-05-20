@@ -33,6 +33,10 @@ public class userStart extends javax.swing.JFrame {
             regButtom.setText("Registrar");
         }
     }
+    
+    public boolean getUserAcced(){
+        return userAcced;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,10 +248,11 @@ public class userStart extends javax.swing.JFrame {
                 String pass = new String(passText.getPassword());
                 if (list.get(0).getUserName().equals(userName.getText()) && list.get(0).getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(this, "¡Inicio Exitoso!\nCierre la ventana");
-                    
+                    userAcced = true;
                 } else {
                    JOptionPane.showMessageDialog(this, "Usuario o Contraseña Incorrecta, intente nuevamente");
                    this.setVisible(false);
+                   userAcced = false;
                     
                 }
             } catch (Exception ex) {
@@ -272,4 +277,5 @@ public class userStart extends javax.swing.JFrame {
     private DaoUserAcces dao = new DaoUserAccesImpl();
     private AdminService service = new AdminService(dao);
     private UserAcces user = new UserAcces();
+    private boolean userAcced; 
 }
