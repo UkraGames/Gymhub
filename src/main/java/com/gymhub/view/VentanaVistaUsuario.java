@@ -14,6 +14,7 @@ import com.gymhub.model.UserAcces;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 
 /**
  *
@@ -248,8 +249,14 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         
         if (admin.isEmpty()){
             userStart ventanaDeRegistro = new userStart(true);
-            ventanaDeRegistro.setVisible(true);
-            this.setVisible(false);
+            JDialog dialog;
+            dialog = new JDialog(this, "Registro Requerido", true);
+            dialog.setContentPane(ventanaDeRegistro.getRootPane());
+            dialog.pack();
+            dialog.setSize(ventanaDeRegistro.getSize());
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+            
         } 
     }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed

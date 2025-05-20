@@ -11,7 +11,7 @@ public class DaoUserAccesImpl extends GymConnect implements DaoUserAcces {
     
     @Override
     public void insertUser(UserAcces user) {
-        String sql = "INSERT INTO userAcces (idUser nombre, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO userAcces (idUser, userName, password) VALUES (?, ?, ?)";
         this.getConnection();
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {

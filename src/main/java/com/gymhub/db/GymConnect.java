@@ -62,7 +62,7 @@ public abstract class GymConnect {
         if (systemName.contains("windows")) {
             newPathOfSystem = System.getProperty("user.home") + "\\GymHubApp\\dataBase.db"; //Esto lo debe de probar Julián, ya no tengo windows actualmente
         } else if (systemName.contains("linux")) {
-            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBaase.db"; //Actualmente funcionando
+            newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Actualmente funcionando
         } else if (systemName.contains("mac")) {
             newPathOfSystem = System.getProperty("user.home") + "/GymHubApp/dataBase.db"; //Dudo que vayamos a saber si funciona, no tenemos MacOS ninguno 
         } else {

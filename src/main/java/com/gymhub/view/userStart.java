@@ -49,7 +49,7 @@ public class userStart extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        userName = new javax.swing.JTextField();
         regButtom = new javax.swing.JButton();
         passText = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
@@ -112,13 +112,13 @@ public class userStart extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Contraseña");
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setAlignmentX(0.0F);
-        jTextField2.setAlignmentY(0.0F);
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        userName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        userName.setAlignmentX(0.0F);
+        userName.setAlignmentY(0.0F);
+        userName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        userName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                userNameActionPerformed(evt);
             }
         });
 
@@ -148,7 +148,7 @@ public class userStart extends javax.swing.JFrame {
                 .addGap(331, 331, 331)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(regButtom, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(userName))
                 .addGap(325, 325, 325))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,7 +168,7 @@ public class userStart extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2)
+                .addComponent(userName)
                 .addGap(7, 7, 7)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,16 +217,16 @@ public class userStart extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_userNameActionPerformed
 
     private void regButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtomActionPerformed
         if (regButtom.getText().equals("Registrar")){
             try{
                 
-                if (!TextoIngreso.getText().isBlank() || !TextoIngreso.getText().isEmpty()){
-                    user.setUserName(TextoIngreso.getText());
+                if (!userName.getText().isBlank() || !userName.getText().isEmpty()){
+                    user.setUserName(userName.getText());
                 }
                 var pass = new String(passText.getPassword());
                 if (!pass.isBlank() || !pass.isEmpty()){
@@ -238,16 +238,20 @@ public class userStart extends javax.swing.JFrame {
                     service.insertToUser(user);
                 }
                 
+                JOptionPane.showMessageDialog(this, "¡Registro Exitoso");
+
             } catch (Exception ex){
                 ex.printStackTrace();
+                
+                
             }
             
         } else {
             try {
                 var list = service.getAdmin();
                 String pass = new String(passText.getPassword());
-                if (list.get(0).getUserName().equals(TextoIngreso.getText()) && list.get(0).getPassword().equals(pass)){
-                     JOptionPane.showInputDialog("¡Inicio Exitoso!");
+                if (list.get(0).getUserName().equals(userName.getText()) && list.get(0).getPassword().equals(pass)){
+                    JOptionPane.showInputDialog("¡Inicio Exitoso!\nCierre la ventana");
                 }
             } catch (Exception ex) {
                 Logger.getLogger(userStart.class.getName()).log(Level.SEVERE, null, ex);
@@ -268,9 +272,9 @@ public class userStart extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPasswordField passText;
     private javax.swing.JButton regButtom;
+    private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
     private DaoUserAcces dao = new DaoUserAccesImpl();
     private AdminService service = new AdminService(dao);
