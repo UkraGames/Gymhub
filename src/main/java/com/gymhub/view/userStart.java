@@ -224,28 +224,20 @@ public class userStart extends javax.swing.JFrame {
     private void regButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtomActionPerformed
         if (regButtom.getText().equals("Registrar")){
             try{
-                
                 if (!userName.getText().isBlank() || !userName.getText().isEmpty()){
                     user.setUserName(userName.getText());
                 }
                 var pass = new String(passText.getPassword());
                 if (!pass.isBlank() || !pass.isEmpty()){
                     user.setPassword(pass);
-                    
                 }
-                
                 if (!user.getUserName().isEmpty() && !user.getPassword().isEmpty()){
                     service.insertToUser(user);
                 }
-                
                 JOptionPane.showMessageDialog(this, "¡Registro Exitoso");
-
             } catch (Exception ex){
-                ex.printStackTrace();
-                
-                
+                ex.printStackTrace();     
             }
-            
         } else {
             try {
                 var list = service.getAdmin();
@@ -257,11 +249,7 @@ public class userStart extends javax.swing.JFrame {
                 Logger.getLogger(userStart.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-      
-        
     }//GEN-LAST:event_regButtomActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TextoIngreso;
