@@ -15,7 +15,7 @@ public class DaoUserAccesImpl extends GymConnect implements DaoUserAcces {
         this.getConnection();
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, user.getIdUser());
+            stmt.setInt(1, 0);
             stmt.setString(2, user.getUserName());
             stmt.setString(3, user.getPassword());
             stmt.executeUpdate();

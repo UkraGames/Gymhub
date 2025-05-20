@@ -257,7 +257,16 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
             
-        } 
+        } else {
+            userStart ventanaDeRegistro = new userStart();
+            JDialog dialog;
+            dialog = new JDialog(this, "Registro Requerido", true);
+            dialog.setContentPane(ventanaDeRegistro.getRootPane());
+            dialog.pack();
+            dialog.setSize(ventanaDeRegistro.getSize());
+            dialog.setLocationRelativeTo(this);
+            dialog.setVisible(true);
+        }
     }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
         Muestra.removeAll();
