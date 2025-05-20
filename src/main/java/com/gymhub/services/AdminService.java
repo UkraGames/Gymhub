@@ -6,6 +6,7 @@ package com.gymhub.services;
 
 import com.gymhub.dao.DaoUserAcces;
 import com.gymhub.model.UserAcces;
+import java.util.ArrayList;
 /**
  *
  * @author diego
@@ -27,6 +28,11 @@ public class AdminService {
         }
         userDao.insertUser(user);
 
+    }
+    
+    public ArrayList<UserAcces> getAdmin() throws Exception {
+       ArrayList<UserAcces> list = this.userDao.listAllUsers();
+       return list;
     }
     
 }

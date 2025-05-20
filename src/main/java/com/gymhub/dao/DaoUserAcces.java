@@ -12,7 +12,7 @@ public interface DaoUserAcces {
      * @throws Exception si ocurre un error al insertar
      */
     void insertUser(UserAcces user) throws Exception;
-    ArrayList listAllUsers() throws Exception;
+    ArrayList<UserAcces> listAllUsers() throws Exception;
 }
 
    

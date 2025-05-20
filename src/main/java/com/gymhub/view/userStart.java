@@ -4,6 +4,14 @@
  */
 package com.gymhub.view;
 
+import com.gymhub.dao.DaoUserAcces;
+import com.gymhub.dao.DaoUserAccesImpl;
+import com.gymhub.model.UserAcces;
+import com.gymhub.services.AdminService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alejo
@@ -16,7 +24,15 @@ public class userStart extends javax.swing.JFrame {
     public userStart() {
         initComponents();
     }
-
+    
+    //Constructor con un booleano que permite crear la interfaz de subida pero diferrente
+    public userStart(boolean e){
+        if (e){
+            initComponents();
+            TextoIngreso.setText("Inserte un usuario");
+            regButtom.setText("Registrar");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,13 +45,13 @@ public class userStart extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        TextoIngreso = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        regButtom = new javax.swing.JButton();
+        passText = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -55,30 +71,30 @@ public class userStart extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(69, 80, 112));
 
-        jLabel1.setBackground(new java.awt.Color(228, 131, 83));
-        jLabel1.setFont(new java.awt.Font("Trajan Pro", 3, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(228, 131, 83));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ingreso de Usuario");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.setAlignmentY(0.0F);
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIconTextGap(10);
-        jLabel1.setName(""); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 16));
+        TextoIngreso.setBackground(new java.awt.Color(228, 131, 83));
+        TextoIngreso.setFont(new java.awt.Font("Trajan Pro", 3, 48)); // NOI18N
+        TextoIngreso.setForeground(new java.awt.Color(228, 131, 83));
+        TextoIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TextoIngreso.setText("Ingreso de Usuario");
+        TextoIngreso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        TextoIngreso.setAlignmentY(0.0F);
+        TextoIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TextoIngreso.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        TextoIngreso.setIconTextGap(10);
+        TextoIngreso.setName(""); // NOI18N
+        TextoIngreso.setPreferredSize(new java.awt.Dimension(100, 16));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+            .addComponent(TextoIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(TextoIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addGap(36, 36, 36))
         );
 
@@ -99,17 +115,22 @@ public class userStart extends javax.swing.JFrame {
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setAlignmentX(0.0F);
         jTextField2.setAlignmentY(0.0F);
-        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 221, 64));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Ingresar");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        regButtom.setBackground(new java.awt.Color(255, 221, 64));
+        regButtom.setForeground(new java.awt.Color(0, 0, 0));
+        regButtom.setText("Ingresar");
+        regButtom.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        regButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regButtomActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -126,14 +147,14 @@ public class userStart extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(331, 331, 331)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                    .addComponent(regButtom, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                     .addComponent(jTextField2))
                 .addGap(325, 325, 325))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(348, 348, 348))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -151,9 +172,9 @@ public class userStart extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regButtom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(143, 143, 143))
         );
 
@@ -169,7 +190,7 @@ public class userStart extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,10 +221,46 @@ public class userStart extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void regButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtomActionPerformed
+        if (regButtom.getText().equals("Registrar")){
+            try{
+                
+                if (!TextoIngreso.getText().isBlank() || !TextoIngreso.getText().isEmpty()){
+                    user.setUserName(TextoIngreso.getText());
+                }
+                var pass = new String(passText.getPassword());
+                if (!pass.isBlank() || !pass.isEmpty()){
+                    user.setPassword(pass);
+                    
+                }
+                
+                if (!user.getUserName().isEmpty() && !user.getPassword().isEmpty()){
+                    service.insertToUser(user);
+                }
+                
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+            
+        } else {
+            try {
+                var list = service.getAdmin();
+                String pass = new String(passText.getPassword());
+                if (list.get(0).getUserName().equals(TextoIngreso.getText()) && list.get(0).getPassword().equals(pass)){
+                     JOptionPane.showInputDialog("¡Inicio Exitoso!");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(userStart.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+      
+        
+    }//GEN-LAST:event_regButtomActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel TextoIngreso;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -211,7 +268,11 @@ public class userStart extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField passText;
+    private javax.swing.JButton regButtom;
     // End of variables declaration//GEN-END:variables
+    private DaoUserAcces dao = new DaoUserAccesImpl();
+    private AdminService service = new AdminService(dao);
+    private UserAcces user = new UserAcces();
 }

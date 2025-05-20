@@ -2,7 +2,6 @@ package com.gymhub.dao;
 
 import com.gymhub.db.GymConnect;
 import com.gymhub.model.UserAcces;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 public class DaoUserAccesImpl extends GymConnect implements DaoUserAcces {
     
     @Override
-    public void insertUser(UserAcces user) throws Exception {
+    public void insertUser(UserAcces user) {
         String sql = "INSERT INTO userAcces (idUser nombre, password) VALUES (?, ?, ?)";
         this.getConnection();
         
@@ -28,7 +27,7 @@ public class DaoUserAccesImpl extends GymConnect implements DaoUserAcces {
     }
 
     @Override
-    public ArrayList listAllUsers() throws Exception {
+    public ArrayList<UserAcces> listAllUsers() throws Exception {
         ArrayList list = new ArrayList();
         try{
             this.getConnection();
@@ -42,7 +41,8 @@ public class DaoUserAccesImpl extends GymConnect implements DaoUserAcces {
                 list.add(obj);
             }
         } catch(SQLException ex){
-            ex.printStackTrace();
+            Throwable cause = ex.getCause();
+            System.out.println(cause);
         } finally{
             this.closeConnection();
         }

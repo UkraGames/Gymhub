@@ -7,6 +7,13 @@ package com.gymhub.view;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import com.gymhub.view.*;
+import com.gymhub.services.AdminService;
+import com.gymhub.dao.DaoUserAcces;
+import com.gymhub.dao.DaoUserAccesImpl;
+import com.gymhub.model.UserAcces;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,11 +25,13 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     private activarCliente updateClient = new activarCliente();
     private editarUsuario modifyUser = new editarUsuario();
     private registrarUsuario registUser = new registrarUsuario();
+    private ArrayList admin;
     /**
      * Creates new form VentanaVistaUsuario
      */
     public VentanaVistaUsuario() {
         initComponents();
+        verifyUser();
     }
 
     /**
@@ -228,7 +237,21 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void verifyUser(){
+        DaoUserAccesImpl dao = new DaoUserAccesImpl();
+        AdminService service = new AdminService(dao);
+        try {
+            admin = service.getAdmin();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVistaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (admin.isEmpty()){
+            userStart ventanaDeRegistro = new userStart(true);
+            ventanaDeRegistro.setVisible(true);
+            this.setVisible(false);
+        } 
+    }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
         Muestra.removeAll();
         Muestra.repaint();
