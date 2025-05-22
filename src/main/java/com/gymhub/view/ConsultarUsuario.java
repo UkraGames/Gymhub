@@ -8,6 +8,7 @@ import com.gymhub.model.Client;
 import com.gymhub.services.ClientService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,10 +48,20 @@ public class ConsultarUsuario extends javax.swing.JPanel {
     
     
     private void search(){
+        
+        
+        
+        
+        
         if (!barraBusqueda.getText().isEmpty() || !barraBusqueda.getText().isBlank()){
+            
+            JDialog dialog = new JDialog();
+            
             try {
+               
                var list = service.searchClient(barraBusqueda.getText());
                DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+               model.setRowCount(0);
                 for (int i = 0; i < list.size(); i++){
                     model.addRow(new Object []{
                         list.get(i).getNameClient(),
@@ -94,7 +105,10 @@ public class ConsultarUsuario extends javax.swing.JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        barraBusqueda.setForeground(new java.awt.Color(255, 255, 255));
+        barraBusqueda.setBackground(new java.awt.Color(255, 255, 255));
+        barraBusqueda.setForeground(new java.awt.Color(0, 0, 0));
+        barraBusqueda.setCaretColor(new java.awt.Color(0, 0, 0));
+        barraBusqueda.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         searchButtom.setBackground(new java.awt.Color(110, 130, 180));
         searchButtom.setText("Buscar");
@@ -148,7 +162,15 @@ public class ConsultarUsuario extends javax.swing.JPanel {
             new String [] {
                 "Nombre", "Fecha Inicio", "Fecha Fin", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -172,6 +194,7 @@ public class ConsultarUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtomActionPerformed
+        
         search();
     }//GEN-LAST:event_searchButtomActionPerformed
 

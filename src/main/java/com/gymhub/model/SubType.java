@@ -34,4 +34,12 @@ public class SubType {
         this.description = description;
     }
     
+    @Override
+    public String toString(){
+        if (this.idSubType == 1){
+            return "Anual";
+        } else {
+            return "Mensual";
+        }
+    }
 }

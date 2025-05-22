@@ -7,6 +7,7 @@ package com.gymhub.view;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import com.gymhub.services.AdminService;
+import com.gymhub.services.SudoService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -169,7 +170,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         TituloLayout.setVerticalGroup(
             TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TituloLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(26, 26, 26)
                 .addGroup(TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TituloLayout.createSequentialGroup()
                         .addComponent(userName)
@@ -277,7 +278,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         userName.setText(admin.get(0).toString());
     }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
-        initComponents();        
+        initComponents();      
     }//GEN-LAST:event_InicioActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
@@ -285,6 +286,10 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        SudoService sudo = new SudoService(this);
+        if (!sudo.getIsUser()){
+            return;
+        }
         initReg(modifyUser);
     }//GEN-LAST:event_EditarActionPerformed
 
@@ -293,6 +298,10 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_BusquedaActionPerformed
 
     private void ActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActivarActionPerformed
+        SudoService sudo = new SudoService(this);
+        if (!sudo.getIsUser()){
+            return;
+        }
         initReg(updateClient);
     }//GEN-LAST:event_ActivarActionPerformed
 

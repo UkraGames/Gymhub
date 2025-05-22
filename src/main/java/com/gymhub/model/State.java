@@ -33,5 +33,12 @@ public class State {
         this.description = description;
     }
     
-    
+    @Override
+    public String toString(){
+        if (idState == 1){
+            return "Activo";
+        } else {
+            return "Inactivo";
+        }
+    }
 }

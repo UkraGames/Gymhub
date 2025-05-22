@@ -236,8 +236,8 @@ public class userStart extends javax.swing.JFrame {
                 if (!user.getUserName().isEmpty() && !user.getPassword().isEmpty()){
                     service.insertToUser(user);
                 }
-                JOptionPane.showMessageDialog(this, "¡Registro Exitoso\nPor favor, inicie la aplicación nuevamente", "Registro exitoso" ,JOptionPane.INFORMATION_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "¡Registro Exitoso!\nPor favor, inicie la aplicación nuevamente", "Registro exitoso" ,JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
                 
             } catch (Exception ex){
                 ex.printStackTrace();     

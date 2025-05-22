@@ -30,5 +30,14 @@ public class PaymentType {
     public void setDescription(String description) {
         this.description = description;
     }
+    @Override
+    public String toString(){
+        if (this.idPaymentType == 1){
+            return "Efectivo";
+            
+        } else {
+            return "Transferencia";
+        }
     
+    }
 }

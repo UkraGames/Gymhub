@@ -3,12 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com.gymhub.view;
+
+import com.gymhub.model.Client;
+import com.gymhub.services.ClientService;
+import com.gymhub.services.SudoService;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
      * @author Alejo
  */
 public class registrarUsuario extends javax.swing.JPanel {
-
+    private final ClientService service = new ClientService();
     /**
      * Creates new form registrarUsuario
      */
@@ -28,7 +37,7 @@ public class registrarUsuario extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        regButtom = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Nombre = new javax.swing.JTextField();
         ID = new javax.swing.JTextField();
@@ -48,11 +57,11 @@ public class registrarUsuario extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         State = new javax.swing.JComboBox<>();
-        Payment = new javax.swing.JComboBox<>();
         TipoSus = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        TypePayment = new javax.swing.JComboBox<>();
-        Date = new com.toedter.calendar.JDateChooser();
+        fechaInicial = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        fechaFinal = new com.toedter.calendar.JDateChooser();
+        payment = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(228, 227, 125));
         setPreferredSize(new java.awt.Dimension(609, 262));
@@ -69,11 +78,11 @@ public class registrarUsuario extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(30, 30, 30));
         jLabel3.setText("Datos de inscripción");
 
-        jButton1.setBackground(new java.awt.Color(110, 130, 180));
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        regButtom.setBackground(new java.awt.Color(110, 130, 180));
+        regButtom.setText("Registrar");
+        regButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                regButtomActionPerformed(evt);
             }
         });
 
@@ -86,7 +95,7 @@ public class registrarUsuario extends javax.swing.JPanel {
                 .addGap(75, 75, 75)
                 .addComponent(jLabel3)
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(regButtom)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,7 +105,7 @@ public class registrarUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1))
+                    .addComponent(regButtom))
                 .addGap(4, 4, 4))
         );
 
@@ -105,6 +114,12 @@ public class registrarUsuario extends javax.swing.JPanel {
         Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NombreActionPerformed(evt);
+            }
+        });
+
+        Cel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CelActionPerformed(evt);
             }
         });
 
@@ -138,18 +153,30 @@ public class registrarUsuario extends javax.swing.JPanel {
         jLabel12.setText("Pago");
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Fecha");
+        jLabel14.setText("Fecha Inicial");
 
         State.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-
-        Payment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Vigente" }));
+        State.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StateActionPerformed(evt);
+            }
+        });
 
         TipoSus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mensual", "Anual" }));
+        TipoSus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoSusActionPerformed(evt);
+            }
+        });
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Tipo de Pago");
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Fecha final");
 
-        TypePayment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Transferencia" }));
+        payment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paymentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -157,28 +184,36 @@ public class registrarUsuario extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TipoSus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12))
-                        .addGap(41, 41, 41)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Payment, 0, 119, Short.MAX_VALUE)
-                            .addComponent(State, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TypePayment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(121, 121, 121))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TipoSus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel12))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(State, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(22, 22, 22)
+                                .addComponent(fechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(118, 118, 118))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,16 +228,16 @@ public class registrarUsuario extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(Payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(TypePayment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45))
+                    .addComponent(fechaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -216,7 +251,7 @@ public class registrarUsuario extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,33 +313,115 @@ public class registrarUsuario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void regButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtomActionPerformed
+        SudoService sudo = new SudoService(this);
+        if (!sudo.getIsUser()){
+            return;
+        }
+        registerUser();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_regButtomActionPerformed
 
+    private void registerUser(){
+                
+        
+        try {
+            Client client = new Client();
+            // Validaciones básicas
+            if (ID.getText().isEmpty() || Nombre.getText().isEmpty() || Cel.getText().isEmpty() ||
+                Altura.getText().isEmpty() || Peso.getText().isEmpty() || payment.getText().isEmpty() ||
+                Correo.getText().isEmpty() || fechaInicial.getDate() == null || fechaFinal.getDate() == null) {
+
+                JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Intentar parsear valores numéricos
+            int id = Integer.parseInt(ID.getText());
+            float altura = Float.parseFloat(Altura.getText());
+            float peso = Float.parseFloat(Peso.getText());
+            int pago = Integer.parseInt(payment.getText());
+
+             // Formatear las fechas a texto
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaInicio = sdf.format(fechaInicial.getDate());
+            String fechaFin = sdf.format(fechaFinal.getDate());
+            
+            
+            // Llenar el cliente
+            client.setDocumentClient(id);
+            client.setNameClient(Nombre.getText());
+            client.setNumber(Cel.getText());
+            client.setHeitght(altura);
+            client.setWeight(peso);
+            client.setPayment(pago);
+            client.seteMail(Correo.getText());
+            client.setStartDate(fechaInicio);
+            client.setFinalDate(fechaFin);
+            client.setSubState(State.getSelectedIndex() + 1);
+            client.setSubType(TipoSus.getSelectedIndex() + 1);
+            
+            service.insertClient(client);
+            // Confirmación
+            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Asegúrate de que los campos numéricos tengan valores válidos.", "Error de formato", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(registrarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al subir a la base", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        
+        ID.setText("");
+        Nombre.setText("");
+        Cel.setText("");
+        Altura.setText("");
+        Peso.setText("");
+        payment.setText("");
+        Correo.setText("");
+        fechaInicial.setDate(null);
+        fechaFinal.setDate(null);
+    }
+    
+    
     private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreActionPerformed
+
+    private void CelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CelActionPerformed
+
+    private void paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paymentActionPerformed
+
+    private void StateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StateActionPerformed
+
+    private void TipoSusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoSusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoSusActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Altura;
     private javax.swing.JTextField Cel;
     private javax.swing.JTextField Correo;
-    private com.toedter.calendar.JDateChooser Date;
     private javax.swing.JTextField ID;
     private javax.swing.JTextField Nombre;
-    private javax.swing.JComboBox<String> Payment;
     private javax.swing.JTextField Peso;
     private javax.swing.JComboBox<String> State;
     private javax.swing.JComboBox<String> TipoSus;
-    private javax.swing.JComboBox<String> TypePayment;
-    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser fechaFinal;
+    private com.toedter.calendar.JDateChooser fechaInicial;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -316,5 +433,7 @@ public class registrarUsuario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField payment;
+    private javax.swing.JButton regButtom;
     // End of variables declaration//GEN-END:variables
 }
