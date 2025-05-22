@@ -36,6 +36,11 @@ public class AdminService {
         if (!list.isEmpty()){
             return list;
         }
+        else {
+            list = this.userDao.listAllUsers();
+            return list;
+        }
+       
     }
     
 }
