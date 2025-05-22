@@ -4,18 +4,19 @@
  */
 package com.gymhub.services;
 
-import com.gymhub.dao.DaoUserAcces;
+import com.gymhub.dao.DaoUserAccesImpl;
 import com.gymhub.model.UserAcces;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 /**
  *
  * @author diego
  */
 public class AdminService {
-    private final DaoUserAcces userDao;
+    private final DaoUserAccesImpl userDao = new DaoUserAccesImpl();
 
-    public AdminService(DaoUserAcces userDao){
-        this.userDao = userDao;
+    public AdminService(){
+        
     }
 
     public void insertToUser(UserAcces user) throws Exception{
@@ -32,7 +33,9 @@ public class AdminService {
     
     public ArrayList<UserAcces> getAdmin() throws Exception {
        ArrayList<UserAcces> list = this.userDao.listAllUsers();
-       return list;
+        if (!list.isEmpty()){
+            return list;
+        }
     }
     
 }

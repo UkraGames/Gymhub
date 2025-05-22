@@ -6,11 +6,7 @@ package com.gymhub.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import com.gymhub.view.*;
 import com.gymhub.services.AdminService;
-import com.gymhub.dao.DaoUserAcces;
-import com.gymhub.dao.DaoUserAccesImpl;
-import com.gymhub.model.UserAcces;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
@@ -22,11 +18,14 @@ import javax.swing.JDialog;
  */
 public class VentanaVistaUsuario extends javax.swing.JFrame {
     
-    private ConsultarUsuario checkUser = new ConsultarUsuario();
-    private activarCliente updateClient = new activarCliente();
-    private editarUsuario modifyUser = new editarUsuario();
-    private registrarUsuario registUser = new registrarUsuario();
+    private final ConsultarUsuario checkUser = new ConsultarUsuario();
+    private final activarCliente updateClient = new activarCliente();
+    private final editarUsuario modifyUser = new editarUsuario();
+    private final registrarUsuario registUser = new registrarUsuario();
     private ArrayList admin;
+    private final AdminService service = new AdminService();
+    private JDialog dialog;
+    private userStart ventanaDeRegistro;
     /**
      * Creates new form VentanaVistaUsuario
      */
@@ -46,16 +45,17 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Muestra = new javax.swing.JPanel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         Inicio = new javax.swing.JButton();
-        Registrar = new javax.swing.JButton();
         Editar = new javax.swing.JButton();
         Busqueda = new javax.swing.JButton();
         Activar = new javax.swing.JButton();
         Titulo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        userName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
+        Registrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -69,11 +69,17 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         Muestra.setLayout(MuestraLayout);
         MuestraLayout.setHorizontalGroup(
             MuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MuestraLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185))
         );
         MuestraLayout.setVerticalGroup(
             MuestraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(MuestraLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Inicio.setBackground(new java.awt.Color(255, 221, 64));
@@ -82,15 +88,6 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         Inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InicioActionPerformed(evt);
-            }
-        });
-
-        Registrar.setBackground(new java.awt.Color(255, 221, 64));
-        Registrar.setForeground(new java.awt.Color(5, 1, 36));
-        Registrar.setText("Registrar clientes");
-        Registrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistrarActionPerformed(evt);
             }
         });
 
@@ -137,9 +134,9 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         jLabel1.setName(""); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(100, 16));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(239, 108, 114));
-        jLabel2.setText("Usuario");
+        userName.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        userName.setForeground(new java.awt.Color(239, 108, 114));
+        userName.setText("Usuario");
 
         jLabel3.setFont(new java.awt.Font("Segoe Print", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(239, 108, 114));
@@ -164,7 +161,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
+                    .addComponent(userName)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Salir))
                 .addGap(23, 23, 23))
@@ -175,7 +172,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TituloLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(userName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,6 +183,15 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
                         .addGap(50, 50, 50))))
         );
 
+        Registrar.setBackground(new java.awt.Color(255, 221, 64));
+        Registrar.setForeground(new java.awt.Color(5, 1, 36));
+        Registrar.setText("Registrar clientes");
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -195,10 +201,10 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Activar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(24, 24, 24)
                 .addComponent(Muestra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -209,12 +215,12 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Busqueda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12)
                         .addComponent(Activar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,8 +245,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void verifyUser(){
-        DaoUserAccesImpl dao = new DaoUserAccesImpl();
-        AdminService service = new AdminService(dao);
+        
         try {
             admin = service.getAdmin();
         } catch (Exception ex) {
@@ -248,31 +253,31 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         }
         
         if (admin.isEmpty()){
-            userStart ventanaDeRegistro = new userStart(true);
-            JDialog dialog;
             dialog = new JDialog(this, "Registro Requerido", true);
+            ventanaDeRegistro = new userStart(true);
             dialog.setContentPane(ventanaDeRegistro.getRootPane());
             dialog.pack();
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
-            userStart ventanaDeRegistro = new userStart();
-            JDialog dialog;
+            ventanaDeRegistro = new userStart();
             dialog = new JDialog(this, "Registro Requerido", true);
             dialog.setContentPane(ventanaDeRegistro.getRootPane());
             dialog.pack();
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
+            
             if (!ventanaDeRegistro.getUserAcced()){
                 System.exit(0);
             }
         }
+        
+        userName.setText(admin.get(0).toString());
     }
     private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
-        Muestra.removeAll();
-        Muestra.repaint();
+        initComponents();        
     }//GEN-LAST:event_InicioActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
@@ -313,9 +318,10 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton Registrar;
     private javax.swing.JButton Salir;
     private javax.swing.JPanel Titulo;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel userName;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package com.gymhub.services;
 
 import com.gymhub.dao.DaoPayment;
+import com.gymhub.dao.DaoPaymentImpl;
 import com.gymhub.model.Payment;
 import java.util.ArrayList;
 
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  * @author diego
  */
 public class PaymentService {
-    private final DaoPayment dao;
+    private final DaoPayment dao = new DaoPaymentImpl();
     
-    public PaymentService(DaoPayment dao){
-        this.dao = dao;
+    public PaymentService(){
+        
     }
     
     public void inserPayment(Payment pay) throws Exception {

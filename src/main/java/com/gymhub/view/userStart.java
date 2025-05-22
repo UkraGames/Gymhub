@@ -4,8 +4,6 @@
  */
 package com.gymhub.view;
 
-import com.gymhub.dao.DaoUserAcces;
-import com.gymhub.dao.DaoUserAccesImpl;
 import com.gymhub.model.UserAcces;
 import com.gymhub.services.AdminService;
 import java.util.logging.Level;
@@ -194,7 +192,7 @@ public class userStart extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -239,6 +237,8 @@ public class userStart extends javax.swing.JFrame {
                     service.insertToUser(user);
                 }
                 JOptionPane.showMessageDialog(this, "¡Registro Exitoso");
+                
+                
             } catch (Exception ex){
                 ex.printStackTrace();     
             }
@@ -249,14 +249,15 @@ public class userStart extends javax.swing.JFrame {
                 if (list.get(0).getUserName().equals(userName.getText()) && list.get(0).getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(this, "¡Inicio Exitoso!\nCierre la ventana");
                     userAcced = true;
+                    
                 } else {
                    JOptionPane.showMessageDialog(this, "Usuario o Contraseña Incorrecta, intente nuevamente");
                    this.setVisible(false);
-                   userAcced = false;
-                    
+                   userAcced = false;    
                 }
             } catch (Exception ex) {
                 Logger.getLogger(userStart.class.getName()).log(Level.SEVERE, null, ex);
+                
             }
         }
     }//GEN-LAST:event_regButtomActionPerformed
@@ -274,8 +275,8 @@ public class userStart extends javax.swing.JFrame {
     private javax.swing.JButton regButtom;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
-    private DaoUserAcces dao = new DaoUserAccesImpl();
-    private AdminService service = new AdminService(dao);
+
+    private AdminService service = new AdminService();
     private UserAcces user = new UserAcces();
     private boolean userAcced; 
 }

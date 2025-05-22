@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.gymhub.Services;
+package com.gymhub.services;
 import com.gymhub.dao.DaoClient;
+import com.gymhub.dao.DaoClientImpl;
 import com.gymhub.model.Client;
 import java.util.ArrayList;
 /**
@@ -11,10 +12,10 @@ import java.util.ArrayList;
  * @author diego
  */
 public class ClientService {
-    private final DaoClient cli;
+    private final DaoClient cli = new DaoClientImpl();
     
-    public ClientService(DaoClient client){
-        this.cli = client;
+    public ClientService(){
+       
     }
     
     public void insertClient(Client client) throws Exception {
@@ -25,7 +26,7 @@ public class ClientService {
         cli.modifyClient(client);
     }
     
-    public ArrayList<Client> getAllClients(Client client) throws Exception {
+    public ArrayList<Client> getAllClients() throws Exception {
         return cli.listOfClient();
     }
     

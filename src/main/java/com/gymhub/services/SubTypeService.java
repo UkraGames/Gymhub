@@ -9,12 +9,13 @@ package com.gymhub.services;
  * @author diego
  */
 import com.gymhub.dao.DaoSubType;
+import com.gymhub.dao.DaoSubTypeImpl;
 import com.gymhub.model.SubType;
+import java.util.ArrayList;
 public class SubTypeService {
-    private DaoSubType dao;
+    private final DaoSubType dao = new DaoSubTypeImpl();
     
-    public SubTypeService (DaoSubType dao){
-        this.dao = dao;
+    public SubTypeService (){
     }
     
     public void createSubType (SubType subType) throws Exception {
@@ -29,7 +30,7 @@ public class SubTypeService {
         dao.deleteSubType(subType);
     }
     
-    public void getAllSubType () throws Exception {
-        dao.listOfSubType();
+    public ArrayList<SubType> getAllSubType () throws Exception {
+        return dao.listOfSubType();
     }
 }

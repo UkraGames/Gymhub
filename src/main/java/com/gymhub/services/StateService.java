@@ -13,13 +13,10 @@ import java.util.ArrayList;
  * @author diego
  */
 public class StateService {
-    private final DaoStateImpl dao;
+    private final DaoStateImpl dao = new DaoStateImpl();
     
-    public StateService(DaoStateImpl dao){
-        this.dao = dao; 
+    public StateService(){
     }
-    
-    
     public void createState(State state) throws Exception {
         dao.uploadState(state);
     }

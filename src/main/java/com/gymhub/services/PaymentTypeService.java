@@ -9,12 +9,13 @@ package com.gymhub.services;
  * @author diego
  */
 import com.gymhub.dao.DaoPaymentType;
+import com.gymhub.dao.DaoPaymentTypeImpl;
 import com.gymhub.model.PaymentType;
 import java.util.ArrayList;
 public class PaymentTypeService {
-    private final DaoPaymentType dao;
-    public PaymentTypeService(DaoPaymentType dao){
-        this.dao = dao;
+    private final DaoPaymentType dao = new DaoPaymentTypeImpl();
+    public PaymentTypeService(){
+        
         
     }
     

@@ -17,7 +17,7 @@ public class DataBase extends GymConnect {
         setURL(newPath);
         this.path = newPath;
         createPath();
-        createDataBase();
+        //Creo que acabo de borrar lo que hacía eso XD
     }
     //Este método debería detectar qué tipo de sistema tiene el usuario. Iré marcando cuáles funcionan
     //Esta sentencia crea la base de datos, la base fue creada por Alejo, no sé si las relaciones estén bien pero tampoco importa (Tal vez) 
@@ -42,7 +42,7 @@ public class DataBase extends GymConnect {
             CREATE TABLE IF NOT EXISTS payment (
                 idPayment INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                 paymentType INTEGER,
-                paymentAmount REAL CHECK (paymentAmount >= 0),
+                paymentAmount INTEGER CHECK (paymentAmount >= 0),
                 FOREIGN KEY (paymentType) REFERENCES paymentType (idPaymentType) ON DELETE CASCADE
             );
             
@@ -68,6 +68,15 @@ public class DataBase extends GymConnect {
                 userName TEXT,
                 password TEXT
             );
+            
+            INSERT INTO subType (description) VALUES ('Anual');
+            INSERT INTO subType (description) VALUES ('Mensual');
+                       
+            INSERT INTO State (description) VALUES ('Activo');
+            INSERT INTO State (description) VALUES ('Inactivo');
+                        
+            INSERT INTO paymentType (description) VALUES ('Efectivo');
+            INSERT INTO paymentType (description) VALUES ('Transferencia');         
         """;
         this.getConnection();
         try {
@@ -94,6 +103,8 @@ public class DataBase extends GymConnect {
             } catch (IOException ex) {
                 Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            createDataBase();
         }
     }   
 
