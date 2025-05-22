@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -23,6 +24,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     private final activarCliente updateClient = new activarCliente();
     private final editarUsuario modifyUser = new editarUsuario();
     private final registrarUsuario registUser = new registrarUsuario();
+    private final crearPago regPago = new crearPago();
     private ArrayList admin;
     private final AdminService service = new AdminService();
     private JDialog dialog;
@@ -267,21 +269,23 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         }
         
         if (admin.isEmpty()){
-            dialog = new JDialog(this, "Registro Requerido", true);
-            ventanaDeRegistro = new userStart(true);
+            dialog = new JDialog(this, "Usuario Requerido", true);
+            ventanaDeRegistro = new userStart(true, dialog);
             dialog.setContentPane(ventanaDeRegistro.getRootPane());
             dialog.pack();
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
         } else {
-            ventanaDeRegistro = new userStart();
             dialog = new JDialog(this, "Registro Requerido", true);
+            ventanaDeRegistro = new userStart(false, dialog);
             dialog.setContentPane(ventanaDeRegistro.getRootPane());
             dialog.pack();
             dialog.setSize(ventanaDeRegistro.getSize());
             dialog.setLocationRelativeTo(this);
             dialog.setVisible(true);
+            
+            
             
             if (!ventanaDeRegistro.getUserAcced()){
                 System.exit(0);
@@ -304,6 +308,7 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
             return;
         }
         initReg(modifyUser);
+        
     }//GEN-LAST:event_EditarActionPerformed
 
     private void BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaActionPerformed
@@ -323,16 +328,27 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void addPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPaymentActionPerformed
-        // TODO add your handling code here:
+        SudoService sudo = new SudoService(this);
+        if (!sudo.getIsUser()){
+            return;
+        }
     }//GEN-LAST:event_addPaymentActionPerformed
 
     private void initReg(JPanel e){
-        var pl = e;
-        pl.setSize(Muestra.getSize());
+        e.setPreferredSize(Muestra.getSize());
+
         Muestra.removeAll();
-        Muestra.add(pl,BorderLayout.CENTER);
+        Muestra.setLayout(new BorderLayout()); // Asegúrate de usar BorderLayout
+
+        JScrollPane scroll = new JScrollPane(e);
+        scroll.setBorder(null); // Opcional: quitar borde
+
+        Muestra.add(scroll, BorderLayout.CENTER);
+
         Muestra.revalidate();
         Muestra.repaint();
+
+        System.out.println("initReg ejecutado con panel: " + e.getClass().getSimpleName());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

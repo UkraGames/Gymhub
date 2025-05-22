@@ -9,13 +9,16 @@ import com.gymhub.services.AdminService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author Alejo
  */
+import javax.swing.JDialog;
 public class userStart extends javax.swing.JFrame {
-
+    private JDialog dialog;
+    private AdminService service = new AdminService();
+    private UserAcces user = new UserAcces();
+    private boolean userAcced; 
     /**
      * Creates new form userStart
      */
@@ -24,13 +27,18 @@ public class userStart extends javax.swing.JFrame {
     }
     
     //Constructor con un booleano que permite crear la interfaz de subida pero diferrente
-    public userStart(boolean e){
+    public userStart(boolean e, JDialog dialog){
+        
+        this.dialog = dialog;
+        initComponents();
         if (e){
-            initComponents();
+            
             TextoIngreso.setText("Inserte un usuario");
             regButtom.setText("Registrar");
         }
     }
+    
+
     
     public boolean getUserAcced(){
         return userAcced;
@@ -222,7 +230,10 @@ public class userStart extends javax.swing.JFrame {
     private void userNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameActionPerformed
-
+    private void onLoginSuccess() {
+        userAcced = true;
+        dialog.dispose(); // ¡CIÉRRALO DESDE AQUÍ!
+    }
     private void regButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtomActionPerformed
         if (regButtom.getText().equals("Registrar")){
             try{
@@ -248,7 +259,7 @@ public class userStart extends javax.swing.JFrame {
                 String pass = new String(passText.getPassword());
                 if (list.get(0).getUserName().equals(userName.getText()) && list.get(0).getPassword().equals(pass)){
                     JOptionPane.showMessageDialog(this, "¡Inicio Exitoso!\nCierre la ventana");
-                    userAcced = true;
+                    this.onLoginSuccess();
                     
                 } else {
                    JOptionPane.showMessageDialog(this, "Usuario o Contraseña Incorrecta, intente nuevamente");
@@ -276,7 +287,5 @@ public class userStart extends javax.swing.JFrame {
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 
-    private AdminService service = new AdminService();
-    private UserAcces user = new UserAcces();
-    private boolean userAcced; 
+
 }

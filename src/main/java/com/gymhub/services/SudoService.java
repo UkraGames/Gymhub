@@ -8,6 +8,7 @@ import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -16,14 +17,26 @@ import javax.swing.JOptionPane;
 public class SudoService {
     private final AdminService service = new AdminService();
     private boolean IsUser;
-    
+    private String password;
     public SudoService(Component e){
         try {
-            String suguesstedName = JOptionPane.showInputDialog("Inserte la contraseña del usuario");
-            
+            JPasswordField passwordField = new JPasswordField();
+
+        
+            int opcion = JOptionPane.showConfirmDialog(
+                null,
+                passwordField,
+                "Ingresa tu contraseña",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE
+            );
+
+            if (opcion == JOptionPane.OK_OPTION) {
+                this.password = new String(passwordField.getPassword());
+            } 
             var list = service.getAdmin();
-            if (!list.get(0).getUserName().equals(suguesstedName)){
-                JOptionPane.showMessageDialog(e, "¡Usuario incorrecto!", "Usuario Incorrecto", JOptionPane.ERROR_MESSAGE);
+            if (!list.get(0).getPassword().equals(this.password)){
+                JOptionPane.showMessageDialog(e, "¡Contraseña incorrecto!", "Incorrecto", JOptionPane.ERROR_MESSAGE);
                 this.IsUser = false;
             } else {
                 JOptionPane.showMessageDialog(e, "Usuario Confirmado", "Hecho", JOptionPane.INFORMATION_MESSAGE);
