@@ -191,7 +191,6 @@ public class ConsultarUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtomActionPerformed
-        
         search();
     }//GEN-LAST:event_searchButtomActionPerformed
 

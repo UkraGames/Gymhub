@@ -341,7 +341,6 @@ public class VentanaVistaUsuario extends javax.swing.JFrame {
         Muestra.setLayout(new BorderLayout()); // Asegúrate de usar BorderLayout
 
         JScrollPane scroll = new JScrollPane(e);
-        scroll.setBorder(null); // Opcional: quitar borde
 
         Muestra.add(scroll, BorderLayout.CENTER);
 
