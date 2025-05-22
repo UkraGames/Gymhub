@@ -48,7 +48,7 @@ public class editarUsuario extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(228, 227, 125));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(69, 80, 112));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(30, 30, 30));

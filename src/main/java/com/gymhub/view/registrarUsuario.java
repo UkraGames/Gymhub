@@ -66,7 +66,7 @@ public class registrarUsuario extends javax.swing.JPanel {
         setBackground(new java.awt.Color(228, 227, 125));
         setPreferredSize(new java.awt.Dimension(609, 262));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(69, 80, 112));
 
         jLabel4.setBackground(new java.awt.Color(239, 184, 16));
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N

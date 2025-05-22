@@ -4,10 +4,7 @@
  */
 package com.gymhub.view;
 
-import com.gymhub.model.Client;
 import com.gymhub.services.ClientService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +25,6 @@ public class ConsultarUsuario extends javax.swing.JPanel {
     
     
     private void loadClient(){
-        tablaClientes.removeAll();
         try {
             var list = service.getAllClients();
             DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
@@ -97,7 +93,7 @@ public class ConsultarUsuario extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(228, 227, 125));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(69, 80, 112));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(30, 30, 30));
