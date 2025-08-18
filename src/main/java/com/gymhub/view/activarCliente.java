@@ -30,12 +30,12 @@ public class activarCliente extends javax.swing.JPanel {
     
     
     private void loadClients(){
-        
+
          try {
             list = service.getAllClients();
             DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
             model.setRowCount(0);
-            for (int i = 0; i < list.size(); i++){
+            for(int i = 0; i < list.size(); i++){
                 model.addRow(new Object []{
                     list.get(i).getDocumentClient(),
                     list.get(i).getNameClient(),
@@ -45,7 +45,7 @@ public class activarCliente extends javax.swing.JPanel {
             }
         } catch (Exception ex){
             ex.getCause();
-        }    
+        }
     }
     
     /**
